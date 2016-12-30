@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Oct 29 11:58:27 2016
+
+@author: jafcpereira
+"""
+
+class Person(object):     
+    def __init__(self, name):         
+        self.name = name     
+    def say(self, stuff):         
+        return self.name + ' says: ' + stuff     
+    def __str__(self):         
+        return self.name  
+
+class Lecturer(Person):     
+    def lecture(self, stuff):         
+        return 'I believe that ' + Person.say(self, stuff)  
+
+class Professor(Lecturer): 
+    def say(self, stuff): 
+        return 'Prof. ' + self.name + ' says: ' + self.lecture(stuff)
+
+class ArrogantProfessor(Professor): 
+    def say(self, stuff): 
+        return '{} says: It is obvious that {}'.format('Prof.' + self.name, Lecturer.lecture(self,stuff))
+    def lecture(self, stuff):
+        return 'It is obvious that ' + Lecturer.lecture(self,stuff)
